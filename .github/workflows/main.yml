@@ -21,7 +21,7 @@ jobs:
       run: unzip ngrok.zip
 
     - name: Authenticate ngrok
-      run: ./ngrok/ngrok authtoken $NGROK_AUTH_TOKEN
+      run: ./ngrok authtoken $NGROK_AUTH_TOKEN
       env:
         NGROK_AUTH_TOKEN: ${{ secrets.NGROK_AUTH_TOKEN }}
 
@@ -35,4 +35,4 @@ jobs:
       run: echo "runneradmin:Rabiu2004@" | sudo chpasswd
 
     - name: Create Tunnel
-      run: ./ngrok/ngrok tcp 3389 && ./ngrok/ngrok tcp 22
+      run: ./ngrok/ngrok tcp 3389
