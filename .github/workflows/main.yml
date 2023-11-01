@@ -1,0 +1,38 @@
+name: CI
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: <link>ubuntu-latest</link>
+
+    steps:
+    - name: Install Dependencies
+      run: |
+        sudo apt update
+        sudo apt install -y wget unzip
+
+    - name: Download ngrok
+      run: wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip -O ngrok.zip
+
+    - name: Extract ngrok
+      run: unzip ngrok.zip
+
+    - name: Authenticate ngrok
+      run: ./ngrok/ngrok authtoken $NGROK_AUTH_TOKEN
+      env:
+        NGROK_AUTH_TOKEN: ${{ secrets.NGROK_AUTH_TOKEN }}
+
+    - name: Enable TS
+      run: sudo sed -i 's/^#\(.*xrdp.*\)/\1/' /etc/xrdp/xrdp.ini
+
+    - name: Start xrdp service
+      run: sudo service xrdp start
+
+    - name: Set user password
+      run: echo "runneradmin:Rabiu2004@" | sudo chpasswd
+
+    - name: Create Tunnel
+      run: ./ngrok/ngrok tcp 3389 && ./ngrok/ngrok tcp 22
