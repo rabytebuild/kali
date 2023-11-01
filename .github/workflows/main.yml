@@ -12,7 +12,7 @@ jobs:
     - name: Install Dependencies
       run: |
         sudo apt update
-        sudo apt install -y wget unzip xrdp openssh-server
+        sudo apt install -y wget unzip xrdp openssh-server ubuntu-desktop
 
     - name: Download ngrok
       run: wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip -O ngrok.zip
