@@ -6,7 +6,7 @@ on:
 
 jobs:
   build:
-    runs-on: <link>ubuntu-latest</link>
+    runs-on: ubuntu-latest
 
     steps:
     - name: Install Dependencies
