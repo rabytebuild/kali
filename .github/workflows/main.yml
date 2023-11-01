@@ -36,4 +36,4 @@ jobs:
       run: sudo systemctl enable ssh && sudo systemctl start ssh
 
     - name: Create Tunnel
-      run: ./ngrok/ngrok tcp 3389
+      run: ./ngrok tcp 3389
